@@ -1,0 +1,90 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package atmmanagmentoops;
+
+import java.util.Scanner;
+
+class Atm{
+  float balance;
+  int pin=4948;
+  
+  public void checkpin(){
+    System.out.println("Please enter a Pin");
+    Scanner sc = new Scanner(System.in);
+    int newpin = sc.nextInt();
+    if(newpin==pin){
+        System.out.println("pin is right");
+        menu();
+    }
+    
+}
+  public void menu(){
+      System.out.println("Enter your Choice");
+      System.out.println("1. Check blance");
+      System.out.println("2.withdrawal ammount");
+      System.out.println("3.deposit ammount");
+      System.out.println("4.Exit");
+      Scanner sc = new Scanner(System.in);
+      int choice = sc.nextInt();
+      
+      if(choice==1){
+          balance();
+      }
+      else if(choice==2){
+          withdrawal();
+      }
+      else if(choice==3){
+          deposit();
+      }
+      else if(choice==4){
+          menu();
+          return;
+      }
+      else{
+         System.out.println("Please enter a valid choice");
+      }
+  }
+  
+  public void balance(){
+      System.out.println("Your account balance is"+balance);
+      menu();
+  }
+  public void withdrawal(){
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Enter a withdrawal ammount");
+      float ammount = sc.nextFloat();
+      if(ammount>balance){
+          System.out.println("inffucient balance");
+          menu();
+      }
+      else{
+          balance = balance-ammount;
+          System.out.println("Please take your cash");
+          System.out.println("youe remaining balance is"+balance);
+          menu();
+      }
+  }
+  public void deposit(){
+      Scanner sc = new Scanner(System.in);
+      float ammount = sc.nextFloat();
+      balance = balance+ammount;
+      System.out.println("your balance is"+balance);
+      menu();
+  
+  }
+}
+
+public class Atmmanagmentoops {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Atm obj = new Atm();
+        obj.checkpin();
+    }
+    
+}
